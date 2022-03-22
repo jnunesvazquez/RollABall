@@ -18,9 +18,32 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private int count;
 
+    public GameObject pickUp;
+
     // At the start of the game..
     void Start ()
     {
+        var positionX = 2f;
+        var positionZ = 2f;
+        var radio = 3;
+        var cantidad = 10;
+        for (int i = 0; i < cantidad; i++)
+        {
+            
+            double angulo = (Math.PI * 2) / cantidad * i;
+            positionX = Convert.ToSingle(radio * Math.Sin(angulo));
+            positionZ = Convert.ToSingle(radio * Math.Cos(angulo));
+            
+            /*if (i % 2 == 0)
+            {
+                positionX *= -1;
+            }
+            else
+            {
+                positionZ *= -1;
+            }*/
+            Instantiate(pickUp, new Vector3(positionX, 1, positionZ), Quaternion.identity);
+        }
         // Assign the Rigidbody component to our private rb variable
         rb = GetComponent<Rigidbody>();
 
